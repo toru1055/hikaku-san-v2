@@ -1,6 +1,11 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <strong>Table:</strong>
+  <%= @item.table.title %>
+</p>
+
+<p>
   <strong>Name:</strong>
   <%= @item.name %>
 </p>
@@ -16,18 +21,18 @@
 </p>
 
 <p>
+  <strong>RakutenUrl:</strong>
+  <%= @item.rakuten_url %>
+</p>
+
+<p>
   <strong>Price:</strong>
   <%= @item.price %>
 </p>
 
 <p>
   <strong>Main image:</strong>
-  <%= @item.main_image %>
-</p>
-
-<p>
-  <strong>Table:</strong>
-  <%= @item.table %>
+  <%= image_tag @item.main_image %>
 </p>
 
 <p>

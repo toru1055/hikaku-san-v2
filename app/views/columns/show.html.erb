@@ -1,6 +1,11 @@
 <p id="notice"><%= notice %></p>
 
 <p>
+  <strong>Table:</strong>
+  <%= @column.table.title %>
+</p>
+
+<p>
   <strong>Name:</strong>
   <%= @column.name %>
 </p>
@@ -17,12 +22,7 @@
 
 <p>
   <strong>Type:</strong>
-  <%= @column.type %>
-</p>
-
-<p>
-  <strong>Table:</strong>
-  <%= @column.table %>
+  <%= @column.type.name %>
 </p>
 
 <p>

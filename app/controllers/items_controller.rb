@@ -70,7 +70,7 @@ class ItemsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def item_params
-      params.require(:item).permit(:name, :title, :description, :price, :main_image, :table_id, :active)
+      params.require(:item).permit(:name, :title, :description, :price, :main_image, :table_id, :active, :rakuten_url)
     end
 
     def create_elements(item)
@@ -85,7 +85,6 @@ class ItemsController < ApplicationController
     end
 
     def update_elements(item)
-      puts "=========== update elements ============="
       item.table.columns.each do |column|
         element = item.elements.where(column_id: column.id).first
         value = params[:item][:column][column.id.to_s]
