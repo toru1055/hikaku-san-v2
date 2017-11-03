@@ -1,39 +1,70 @@
-<div class="container">
-  <div class="row">
-    <div class="offset-lg-1 col-lg-10">
-      <h3 class="mt-4"><%= @table.title %></h3>
-      <hr>
-      <%= image_tag @table.hero_image, class: "img-fluid rounded mx-auto d-block" %>
-      <hr>
-      <p><%= @table.description %></p>
-      <hr>
-      <% @table.items.each do |item| %>
-        <h4 class="mt-4"><%= item.name %></h4>
-        <div class="card p-4">
-          <div class="row">
-            <div class="col-lg-5 text-center">
-                <%= image_tag item.main_image, class: "card-img-top portfolio-item-img" %>
-            </div>
-            <div class="col-lg-7">
-                <h5 class="card-title"><%= item.title %></h5>
-                <strong><%= item.formatted_price %>円</strong>
-                <p class="card-text mt-2"><%= item.description %></p>
-                <ul class="list-group list-group-flush">
-                  <% @table.columns.each do |column| %>
-                    <li class="list-group-item">
-                      <%= column.name %>: 
-                      <%= item.element_value(column) %>
-                      <%= column.unit %>
-                    </li>
-                  <% end %>
-                </ul>
-                <%= link_to "楽天に行く", item.rakuten_url, class: "btn btn-primary btn-lg btn-block", target: "_blank" %>
-            </div>
+<div class="row">
+  <div class="offset-lg-1 col-lg-10">
+    <h3 class="mt-4"><%= @table.title %></h3>
+    <hr>
+    <%= image_tag @table.hero_image, class: "img-fluid rounded mx-auto d-block" %>
+    <hr>
+    <p><%= @table.description %></p>
+    <hr>
+    <% @table.items.each do |item| %>
+      <h4 class="mt-4"><%= item.name %></h4>
+      <div class="card p-4">
+        <div class="row">
+          <div class="col-lg-5 text-center pb-4">
+            <%= image_tag item.main_image, class: "card-img-top portfolio-item-img" %>
+          </div>
+          <div class="col-lg-7">
+            <h5 class="card-title"><%= item.title %></h5>
+            <strong><%= item.formatted_price %>円</strong>
+            <p class="card-text mt-2"><%= item.description %></p>
+            <ul class="list-group list-group-flush">
+              <% @table.columns.each do |column| %>
+                <li class="list-group-item">
+                  <%= column.name %>: 
+                  <%= item.element_value(column) %>
+                  <%= column.unit %>
+                </li>
+              <% end %>
+            </ul>
+            <%= link_to "楽天に行く", item.rakuten_url, class: "btn btn-primary btn-lg btn-block", target: "_blank" %>
           </div>
         </div>
-        <hr>
-      <% end %>
-      <h3>比較表</h3>
-    </div>
+      </div>
+      <hr>
+    <% end %>
+
+    <h3>比較表</h3>
+    <table class="table table-bordered text-center">
+      <thead>
+        <tr>
+          <th>商品</th>
+          <th>値段</th>
+          <% @table.columns.each do |column| %>
+            <th><%= column.name %></th>
+          <% end %>
+          <th>リンク</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @table.items.each do |item| %>
+          <tr>
+            <td>
+              <strong><%= item.name %></strong></br>
+              <%= image_tag item.main_image, {class: "rounded img-fluid"} %>
+            </td>
+            <td><%= item.formatted_price %> 円</td>
+            <% @table.columns.each do |column| %>
+              <td>
+                <%= item.element_value(column) %>
+                <%= column.unit %>
+              </td>
+            <% end %>
+            <td><%= link_to "楽天", item.rakuten_url, {:target => "_blank", class: "btn btn-primary btn-sm"} %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
   </div>
 </div>

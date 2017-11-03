@@ -2,13 +2,13 @@
 
 <h1>Tables</h1>
 
-<table>
+<table class="table">
   <thead>
     <tr>
       <th>Title</th>
       <th>Description</th>
       <th>Hero image</th>
-      <th colspan="3"></th>
+      <th></th>
     </tr>
   </thead>
 
@@ -16,11 +16,12 @@
     <% @tables.each do |table| %>
       <tr>
         <td><%= table.title %></td>
-        <td><%= table.description %></td>
-        <td><%= image_tag table.hero_image %></td>
-        <td><%= link_to 'Show', table %></td>
-        <td><%= link_to 'Edit', edit_table_path(table) %></td>
-        <td><%= link_to 'Destroy', table, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= table.description.truncate(20) %></td>
+        <td><%= image_tag table.hero_image, {class: "rounded img-fluid"} %></td>
+        <td>
+          <%= link_to 'Show', table, {class: "btn btn-primary btn-sm"} %>
+          <%= link_to 'Edit', edit_table_path(table), {class: "btn btn-primary btn-sm"} %>
+          <%= link_to 'Destroy', table, method: :delete, data: { confirm: 'Are you sure?' }, class: "btn btn-danger btn-sm" %></td>
       </tr>
     <% end %>
   </tbody>
@@ -28,4 +29,4 @@
 
 <br>
 
-<%= link_to 'New Table', new_table_path %>
+<%= link_to 'New Table', new_table_path, {class: "btn btn-primary btn-lg"} %>
