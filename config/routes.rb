@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  root 'main#index'
+
+  get 'product/:table_id', to: 'main#product'
+
   resources :columns
   resources :elements
   resources :types
