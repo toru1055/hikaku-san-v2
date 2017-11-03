@@ -1,3 +1,5 @@
+<hr>
+
 <%= form_with(model: column, local: true) do |form| %>
   <% if column.errors.any? %>
     <div id="error_explanation">
@@ -11,52 +13,51 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name, id: :column_name %>
+  <div class="form-group row">
+    <%= form.label :name, class: "col-2 col-form-label" %>
+    <%= form.text_field :name, id: :column_name, class: "form-control col-10" %>
   </div>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description, id: :column_description %>
+  <div class="form-group row">
+    <%= form.label :description, class: "col-2 col-form-label" %>
+    <%= form.text_area :description, id: :column_description, class: "form-control col-10", rows: "3" %>
   </div>
 
-  <div class="field">
-    <%= form.label :priority %>
-    <%= form.number_field :priority, id: :column_priority %>
+  <div class="form-group row">
+    <%= form.label :priority, class: "col-2 col-form-label" %>
+    <%= form.number_field :priority, id: :column_priority, class: "form-control col-10" %>
   </div>
 
-  <div class="field">
-    <%= form.label :type_id %>
-    <%= form.select :type_id, Type.all.map { |t| [t.name, t.id] }, {}, {id: "column_type_id", class: "form-control"} %>
+  <div class="form-group row">
+    <%= form.label :type_id, class: "col-2 col-form-label" %>
+    <%= form.select :type_id, Type.all.map { |t| [t.name, t.id] }, {}, {id: "column_type_id", class: "form-control col-10"} %>
   </div>
 
-  <div class="field">
-    <%= form.label :table_id %>
-    <%= form.text_field :table_id, id: :column_table_id %>
+  <%= form.hidden_field :table_id, :id => :column_table_id %>
+
+  <div class="form-group row">
+    <%= form.label :not_null, class: "col-2 col-form-label" %>
+    <%= form.check_box :not_null, id: :column_not_null, class: "form-control col-1" %>
   </div>
 
-  <div class="field">
-    <%= form.label :not_null %>
-    <%= form.check_box :not_null, id: :column_not_null %>
+  <div class="form-group row">
+    <%= form.label :unique, class: "col-2 col-form-label" %>
+    <%= form.check_box :unique, id: :column_unique, class: "form-control col-1" %>
   </div>
 
-  <div class="field">
-    <%= form.label :unique %>
-    <%= form.check_box :unique, id: :column_unique %>
+  <div class="form-group row">
+    <%= form.label :default_value, class: "col-2 col-form-label" %>
+    <%= form.text_field :default_value, id: :column_default_value, class: "form-control col-10" %>
   </div>
 
-  <div class="field">
-    <%= form.label :default_value %>
-    <%= form.text_field :default_value, id: :column_default_value %>
-  </div>
-
-  <div class="field">
-    <%= form.label :unit %>
-    <%= form.text_field :unit, id: :column_unit %>
+  <div class="form-group row">
+    <%= form.label :unit, class: "col-2 col-form-label" %>
+    <%= form.text_field :unit, id: :column_unit, class: "form-control col-10" %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit :class => 'btn btn-primary' %>
   </div>
 <% end %>
+
+<hr>

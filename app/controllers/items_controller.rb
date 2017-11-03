@@ -86,10 +86,17 @@ class ItemsController < ApplicationController
 
     def update_elements(item)
       item.table.columns.each do |column|
-        element = item.elements.where(column_id: column.id).first
         value = params[:item][:column][column.id.to_s]
-        if !element.update(value: value)
-          return false
+        element = item.elements.where(column_id: column.id).first
+        if element == nil
+          element = Element.new(table: item.table, item: item, column: column, value: value)
+          if !element.save
+            return false
+          end
+        else
+          if !element.update(value: value)
+            return false
+          end
         end
       end
       return true

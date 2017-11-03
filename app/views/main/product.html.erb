@@ -18,7 +18,7 @@
             <strong><%= item.formatted_price %>円</strong>
             <p class="card-text mt-2"><%= item.description %></p>
             <ul class="list-group list-group-flush">
-              <% @table.columns.each do |column| %>
+              <% @table.columns.order(:priority).each do |column| %>
                 <li class="list-group-item">
                   <%= column.name %>: 
                   <%= item.element_value(column) %>
@@ -34,12 +34,12 @@
     <% end %>
 
     <h3>比較表</h3>
-    <table class="table table-bordered text-center">
+    <table class="table table-bordered text-center table-main">
       <thead>
         <tr>
           <th>商品</th>
           <th>値段</th>
-          <% @table.columns.each do |column| %>
+          <% @table.columns.order(:priority).each do |column| %>
             <th><%= column.name %></th>
           <% end %>
           <th>リンク</th>
@@ -54,7 +54,7 @@
               <%= image_tag item.main_image, {class: "rounded img-fluid"} %>
             </td>
             <td><%= item.formatted_price %> 円</td>
-            <% @table.columns.each do |column| %>
+            <% @table.columns.order(:priority).each do |column| %>
               <td>
                 <%= item.element_value(column) %>
                 <%= column.unit %>

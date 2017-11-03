@@ -1,49 +1,60 @@
 <p id="notice"><%= notice %></p>
 
+<h1>Show Column</h1>
+
 <p>
   <strong>Table:</strong>
   <%= @column.table.title %>
 </p>
 
-<p>
-  <strong>Name:</strong>
-  <%= @column.name %>
-</p>
+<hr>
 
-<p>
-  <strong>Description:</strong>
-  <%= @column.description %>
-</p>
 
-<p>
-  <strong>Priority:</strong>
-  <%= @column.priority %>
-</p>
+<table class="table">
 
-<p>
-  <strong>Type:</strong>
-  <%= @column.type.name %>
-</p>
+  <tr>
+    <th>Name</th>
+    <td><%= @column.name %></td>
+  </tr>
 
-<p>
-  <strong>Not null:</strong>
-  <%= @column.not_null %>
-</p>
+  <tr>
+    <th>Description</th>
+    <td><%= @column.description %></td>
+  </tr>
 
-<p>
-  <strong>Unique:</strong>
-  <%= @column.unique %>
-</p>
+  <tr>
+    <th>Priority</th>
+    <td><%= @column.priority %></td>
+  </tr>
 
-<p>
-  <strong>Default value:</strong>
-  <%= @column.default_value %>
-</p>
+  <tr>
+    <th>Type</th>
+    <td><%= @column.type.name %></td>
+  </tr>
 
-<p>
-  <strong>Unit:</strong>
-  <%= @column.unit %>
-</p>
+  <tr>
+    <th>Not null</th>
+    <td><%= @column.not_null %></td>
+  </tr>
 
-<%= link_to 'Edit', edit_column_path(@column) %> |
-<%= link_to 'Back', table_path(@column.table.id) %>
+  <tr>
+    <th>Unique</th>
+    <td><%= @column.unique %></td>
+  </tr>
+
+  <tr>
+    <th>Default value</th>
+    <td><%= @column.default_value %></td>
+  </tr>
+
+  <tr>
+    <th>Unit:</th>
+    <td><%= @column.unit %></td>
+  </tr>
+
+</table>
+
+<hr>
+
+<%= link_to 'Edit', edit_column_path(@column), class: "btn btn-primary" %> |
+<%= link_to 'Back', table_path(@column.table.id), class: "btn btn-primary" %>

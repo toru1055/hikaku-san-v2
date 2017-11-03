@@ -1,3 +1,4 @@
+<hr>
 <%= form_with(model: table, local: true) do |form| %>
   <% if table.errors.any? %>
     <div id="error_explanation">
@@ -11,22 +12,23 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title, id: :table_title %>
+  <div class="form-group row">
+    <%= form.label :title, class: "col-2 col-form-label" %>
+    <%= form.text_field :title, id: :table_title, class: "form-control col-10" %>
   </div>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description, id: :table_description %>
+  <div class="form-group row">
+    <%= form.label :description, class: "col-2 col-form-label" %>
+    <%= form.text_area :description, id: :table_description, class: "form-control col-10", rows: "5" %>
   </div>
 
-  <div class="field">
-    <%= form.label :hero_image %>
-    <%= form.text_area :hero_image, id: :table_hero_image %>
+  <div class="form-group row">
+    <%= form.label :hero_image, class: "col-2 col-form-label" %>
+    <%= form.text_area :hero_image, id: :table_hero_image, class: "form-control col-10", rows: "5" %>
   </div>
 
   <div class="actions">
-    <%= form.submit %>
+    <%= form.submit :class => 'btn btn-primary' %>
   </div>
 <% end %>
+<hr>

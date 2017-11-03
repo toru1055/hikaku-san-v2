@@ -1,53 +1,61 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Table:</strong>
-  <%= @item.table.title %>
-</p>
+<h1>Show Item</h1>
 
 <p>
-  <strong>Name:</strong>
-  <%= @item.name %>
+<strong>Table:</strong>
+<%= @item.table.title %>
 </p>
 
-<p>
-  <strong>Title:</strong>
-  <%= @item.title %>
-</p>
+<table class="table table-bordered">
 
-<p>
-  <strong>Description:</strong>
-  <%= @item.description %>
-</p>
+  <tr>
+    <th>Name</th>
+    <td><%= @item.name %></td>
+  </tr>
 
-<p>
-  <strong>RakutenUrl:</strong>
-  <%= @item.rakuten_url %>
-</p>
+  <tr>
+    <th>Title</th>
+    <td><%= @item.title %></td>
+  </tr>
 
-<p>
-  <strong>Price:</strong>
-  <%= @item.price %>
-</p>
+  <tr>
+    <th>Description</th>
+    <td><%= @item.description %></td>
+  </tr>
 
-<p>
-  <strong>Main image:</strong>
-  <%= image_tag @item.main_image %>
-</p>
+  <tr>
+    <th>Rakuten url</th>
+    <td><%= @item.rakuten_url %></td>
+  </tr>
 
-<p>
-  <strong>Active:</strong>
-  <%= @item.active %>
-</p>
+  <tr>
+    <th>Price</th>
+    <td><%= @item.price %></td>
+  </tr>
 
-<% @item.table.columns.each do |column| %>
-  <p>
-    <strong><%= column.name %>:</strong>
-    <% if @item.elements.where(column_id: column.id).first %>
-    <%= @item.elements.where(column_id: column.id).first.value %>
+  <tr>
+    <th>Main image</th>
+    <td><%= image_tag @item.main_image, width: "200px" %></td>
+  </tr>
+
+  <tr>
+    <th>Active</th>
+    <td><%= @item.active %></td>
+  </tr>
+
+  <% @item.table.columns.order(:priority).each do |column| %>
+    <tr>
+      <th><%= column.name %></th>
+      <td>
+        <% if @item.elements.where(column_id: column.id).first %>
+          <%= @item.elements.where(column_id: column.id).first.value %>
+        <% end %>
+      </td>
+    </tr>
   <% end %>
-  </p>
-<% end %>
 
-<%= link_to 'Edit', edit_item_path(@item) %> |
-<%= link_to 'Back', table_path(@item.table.id) %>
+</table>
+
+<%= link_to 'Edit', edit_item_path(@item), class: "btn btn-primary" %> |
+<%= link_to 'Back', table_path(@item.table.id), class: "btn btn-primary" %>
