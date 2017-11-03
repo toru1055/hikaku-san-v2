@@ -1,0 +1,62 @@
+<%= form_with(model: column, local: true) do |form| %>
+  <% if column.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(column.errors.count, "error") %> prohibited this column from being saved:</h2>
+
+      <ul>
+      <% column.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :name %>
+    <%= form.text_field :name, id: :column_name %>
+  </div>
+
+  <div class="field">
+    <%= form.label :description %>
+    <%= form.text_area :description, id: :column_description %>
+  </div>
+
+  <div class="field">
+    <%= form.label :priority %>
+    <%= form.number_field :priority, id: :column_priority %>
+  </div>
+
+  <div class="field">
+    <%= form.label :type_id %>
+    <%= form.select :type_id, Type.all.map { |t| [t.name, t.id] }, {}, {id: "column_type_id", class: "form-control"} %>
+  </div>
+
+  <div class="field">
+    <%= form.label :table_id %>
+    <%= form.text_field :table_id, id: :column_table_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :not_null %>
+    <%= form.check_box :not_null, id: :column_not_null %>
+  </div>
+
+  <div class="field">
+    <%= form.label :unique %>
+    <%= form.check_box :unique, id: :column_unique %>
+  </div>
+
+  <div class="field">
+    <%= form.label :default_value %>
+    <%= form.text_field :default_value, id: :column_default_value %>
+  </div>
+
+  <div class="field">
+    <%= form.label :unit %>
+    <%= form.text_field :unit, id: :column_unit %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,48 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @item.name %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @item.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @item.description %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @item.price %>
+</p>
+
+<p>
+  <strong>Main image:</strong>
+  <%= @item.main_image %>
+</p>
+
+<p>
+  <strong>Table:</strong>
+  <%= @item.table %>
+</p>
+
+<p>
+  <strong>Active:</strong>
+  <%= @item.active %>
+</p>
+
+<% @item.table.columns.each do |column| %>
+  <p>
+    <strong><%= column.name %>:</strong>
+    <% if @item.elements.where(column_id: column.id).first %>
+    <%= @item.elements.where(column_id: column.id).first.value %>
+  <% end %>
+  </p>
+<% end %>
+
+<%= link_to 'Edit', edit_item_path(@item) %> |
+<%= link_to 'Back', table_path(@item.table.id) %>

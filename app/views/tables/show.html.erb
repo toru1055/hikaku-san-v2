@@ -1,0 +1,104 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Table</h1>
+
+<h2>Base information</h2>
+<p>
+  <strong>Title:</strong>
+  <%= @table.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @table.description %>
+</p>
+
+<p>
+  <strong>Hero image:</strong>
+  <%= image_tag @table.hero_image %>
+</p>
+
+<%= link_to 'Edit', edit_table_path(@table) %> |
+<%= link_to 'Back', tables_path %>
+
+<h2>Columns</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Priority</th>
+      <th>Type</th>
+      <th>Not null</th>
+      <th>Unique</th>
+      <th>Default value</th>
+      <th>Unit</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @table.columns.each do |column| %>
+      <tr>
+        <td><%= column.name %></td>
+        <td><%= column.description %></td>
+        <td><%= column.priority %></td>
+        <td><%= column.type.name %></td>
+        <td><%= column.not_null %></td>
+        <td><%= column.unique %></td>
+        <td><%= column.default_value %></td>
+        <td><%= column.unit %></td>
+        <td><%= link_to 'Show', column %></td>
+        <td><%= link_to 'Edit', edit_column_path(column) %></td>
+        <td><%= link_to 'Destroy', column, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Add Column', add_column_table_path %>
+
+<h2>Items</h2>
+
+<table>
+  <thead>
+    <tr>
+      <th>MainImage</th>
+      <th>Name</th>
+      <th>Title</th>
+      <th>Description</th>
+      <th>Price</th>
+      <th>Active</th>
+      <% @table.columns.each do |column| %>
+        <th><%= column.name %></th>
+      <% end %>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @table.items.each do |item| %>
+      <tr>
+        <td><%= image_tag item.main_image %></td>
+        <td><%= item.name %></td>
+        <td><%= item.title %></td>
+        <td><%= item.description %></td>
+        <td><%= item.price %></td>
+        <td><%= item.active %></td>
+        <% @table.columns.each do |column| %>
+          <td><%= item.element_value(column) %></td>
+        <% end %>
+        <td><%= link_to 'Show', item %></td>
+        <td><%= link_to 'Edit', edit_item_path(item) %></td>
+        <td><%= link_to 'Destroy', item, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'Add Item', add_item_table_path %>

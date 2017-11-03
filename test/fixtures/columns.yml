@@ -1,0 +1,23 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  description: MyText
+  priority: 1
+  type: one
+  table: one
+  not_null: false
+  unique: false
+  default_value: MyString
+  unit: MyString
+
+two:
+  name: MyString
+  description: MyText
+  priority: 1
+  type: two
+  table: two
+  not_null: false
+  unique: false
+  default_value: MyString
+  unit: MyString
