@@ -1,3 +1,39 @@
 <div class="container">
-  <h1 class="mt-4 mb-3"><%= @table.title %></h1>
+  <div class="row">
+    <div class="offset-lg-1 col-lg-10">
+      <h3 class="mt-4"><%= @table.title %></h3>
+      <hr>
+      <%= image_tag @table.hero_image, class: "img-fluid rounded mx-auto d-block" %>
+      <hr>
+      <p><%= @table.description %></p>
+      <hr>
+      <% @table.items.each do |item| %>
+        <h4 class="mt-4"><%= item.name %></h4>
+        <div class="card p-4">
+          <div class="row">
+            <div class="col-lg-5 text-center">
+                <%= image_tag item.main_image, class: "card-img-top portfolio-item-img" %>
+            </div>
+            <div class="col-lg-7">
+                <h5 class="card-title"><%= item.title %></h5>
+                <strong><%= item.formatted_price %>円</strong>
+                <p class="card-text mt-2"><%= item.description %></p>
+                <ul class="list-group list-group-flush">
+                  <% @table.columns.each do |column| %>
+                    <li class="list-group-item">
+                      <%= column.name %>: 
+                      <%= item.element_value(column) %>
+                      <%= column.unit %>
+                    </li>
+                  <% end %>
+                </ul>
+                <%= link_to "楽天に行く", item.rakuten_url, class: "btn btn-primary btn-lg btn-block", target: "_blank" %>
+            </div>
+          </div>
+        </div>
+        <hr>
+      <% end %>
+      <h3>比較表</h3>
+    </div>
+  </div>
 </div>
