@@ -4,6 +4,16 @@
 
 <hr>
 
+<% if @table.active %>
+  <div class="alert alert-success" role="alert">
+    WORKING
+  </div>
+<% else %>
+  <div class="alert alert-danger" role="alert">
+    NOT WORKING
+  </div>
+<% end %>
+
 <h2>Base information</h2>
 <p>
 <strong>Title:</strong></br>
@@ -14,6 +24,12 @@
 <strong>Description:</strong>
 </br>
 <%= @table.description %>
+</p>
+
+<p>
+<strong>Annotation:</strong>
+</br>
+<%= @table.annotation %>
 </p>
 
 <p>

@@ -19,12 +19,22 @@
 
   <div class="form-group row">
     <%= form.label :description, class: "col-2 col-form-label" %>
-    <%= form.text_area :description, id: :table_description, class: "form-control col-10", rows: "5" %>
+    <%= form.text_area :description, id: :table_description, class: "form-control col-10", rows: "3" %>
+  </div>
+
+  <div class="form-group row">
+    <%= form.label :annotation, class: "col-2 col-form-label" %>
+    <%= form.text_area :annotation, id: :table_annotation, class: "form-control col-10", rows: "3" %>
   </div>
 
   <div class="form-group row">
     <%= form.label :hero_image, class: "col-2 col-form-label" %>
-    <%= form.text_area :hero_image, id: :table_hero_image, class: "form-control col-10", rows: "5" %>
+    <%= form.text_area :hero_image, id: :table_hero_image, class: "form-control col-10" %>
+  </div>
+
+  <div class="form-group row">
+    <%= form.label :active, class: "col-2 col-form-label" %>
+    <%= form.check_box :active, id: :item_active, class: "form-control col-10" %>
   </div>
 
   <div class="actions">
