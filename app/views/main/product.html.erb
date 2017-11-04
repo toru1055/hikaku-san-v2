@@ -68,7 +68,13 @@
           <tr>
             <th><%= column.name %></th>
             <% @table.items.where("active = ?", true).each do |item| %>
-              <td><%= item.element_value(column) %><%= column.unit %></td>
+              <td>
+              <% if item.element_value(column) != nil && item.element_value(column).length > 0 %>
+                <%= item.element_value(column) %><%= column.unit %>
+              <% else %>
+                  ---
+              <% end %>
+              </td>
             <% end %>
           </tr>
         <% end %>
