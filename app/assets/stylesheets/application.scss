@@ -57,6 +57,10 @@ body {
   table-layout: fixed;
 }
 
+.table thead th {
+  vertical-align: middle;
+}
+
 .table td {
   vertical-align: middle;
 }
