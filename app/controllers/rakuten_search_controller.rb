@@ -36,7 +36,7 @@ class RakutenSearchController < ApplicationController
     Item.new(
       name: p.name,
       description: p.caption,
-      price: p.min_price,
+      price: p.used_exclude_sales_min_price,
       main_image: p.medium_image_url.gsub(/\?_ex=128x128$/, '').gsub(/http:/, 'https:'),
       table_id: table.id,
       active: false,
