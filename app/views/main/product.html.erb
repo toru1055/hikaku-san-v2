@@ -19,11 +19,13 @@
             <p class="card-text mt-2"><%= item.description %></p>
             <ul class="list-group list-group-flush">
               <% @table.columns.order(:priority).each do |column| %>
-                <li class="list-group-item">
-                  <%= column.name %>: 
-                  <%= item.element_value(column) %>
-                  <%= column.unit %>
-                </li>
+                <% if item.element_value(column) != nil && item.element_value(column).length > 0 %>
+                  <li class="list-group-item">
+                    <%= column.name %>: 
+                    <%= item.element_value(column) %>
+                    <%= column.unit %>
+                  </li>
+                <% end %>
               <% end %>
             </ul>
             <%= link_to "楽天に行く", item.rakuten_url, class: "btn btn-primary btn-lg btn-block", target: "_blank" %>

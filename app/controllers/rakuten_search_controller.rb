@@ -12,7 +12,8 @@ class RakutenSearchController < ApplicationController
         keyword: @rws_keyword,
         genreId: @rws_genre_id,
         minPrice: @rws_min_price,
-        maxPrice: @rws_max_price
+        maxPrice: @rws_max_price,
+        hits: 10
       ).page(@rws_page)
     end
     if params[:submit_create] != nil
