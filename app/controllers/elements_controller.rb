@@ -1,4 +1,5 @@
 class ElementsController < ApplicationController
+  http_basic_authenticate_with name: ENV['BASIC_AUTH_NAME'], password: ENV['BASIC_AUTH_PASS'] if Rails.env.production?
   before_action :set_element, only: [:show, :edit, :update, :destroy]
 
   # GET /elements

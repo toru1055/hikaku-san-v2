@@ -1,4 +1,6 @@
 class RakutenSearchController < ApplicationController
+  http_basic_authenticate_with name: ENV['BASIC_AUTH_NAME'], password: ENV['BASIC_AUTH_PASS'] if Rails.env.production?
+
   def index
     @table = Table.find(params[:table_id])
     @rws_keyword = params[:keyword]
