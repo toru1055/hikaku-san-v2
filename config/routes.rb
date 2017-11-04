@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'rakuten_search/index/:table_id', to: 'rakuten_search#index'
+
+  get 'rakuten_search/create'
+
   root 'main#index'
 
   get 'product/:table_id', to: 'main#product'

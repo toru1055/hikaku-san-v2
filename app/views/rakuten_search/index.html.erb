@@ -1,0 +1,82 @@
+<p id="notice"><%= notice %></p>
+<h1>RakutenSearch</h1>
+
+<p>
+<strong>Table title</strong></br>
+<%= link_to @table.title, controller: :rakuten_search, action: :index, table_id: @table.id  %>
+</p>
+
+<div class="row">
+  <div class="col-sm-12">
+    <form name="sform">
+      <input type="text" name="keyword" placeholder="keyword" value="<%= @rws_keyword %>" class="col-5" />
+      <input type="number" name="genreId" placeholder="genreId" value="<%= @rws_genre_id %>" class="col-3" /></br>
+      <input type="number" name="minPrice" placeholder="minPrice" value="<%= @rws_min_price %>" class="col-3" />
+      <input type="number" name="maxPrice" placeholder="maxPrice" value="<%= @rws_max_price %>" class="col-3" />
+      <input type="number" name="page" placeholder="page" value="<%= @rws_page %>" class="col-3" />
+      <button type="submit" class="btn btn-primary" name="submit_search">Search</button>
+      <button type="submit" class="btn btn-primary" name="submit_create">Create</button>
+    </form>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-sm-12">
+    <hr>
+
+    <% if @r_items != {} %>
+
+      <p>
+      <strong>検索数: </strong>
+      <%= @r_items.response['count'] %>
+      </p>
+
+      <p>
+      <strong>ページ番号: </strong>
+      <%= @r_items.response['page'] %>
+      </p>
+
+      <p>
+      <strong>総ページ数: </strong>
+      <%= @r_items.response['pageCount'] %>
+      </p>
+
+    <% end %>
+
+    <hr>
+  </div>
+</div>
+
+<table class="table table-bordered">
+  <thead class="thead-default">
+    <tr>
+      <th>image</th>
+      <th>name</th>
+      <th>minPrice</th>
+      <th>genreId</th>
+      <th>genreName</th>
+      <th>reviewCount</th>
+      <th>reviewAverage</th>
+      <th>detail</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @r_items.each do |item| %>
+      <tr>
+        <td><%= image_tag item.medium_image_url.gsub(/http:/, 'https:'), width: "100px" %></td>
+        <td><%= link_to item.name, item.url_pc, target: "_blank" %></td>
+        <td><%= item.min_price.to_s(:delimited) %></td>
+        <td><%= item.genre_id %></td>
+        <td><%= item.genre_name %></td>
+        <td><%= item.review_count %></td>
+        <td><%= item.review_average %></td>
+        <td><%= item.details.first %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to "Back", table_path(@table), {class: "btn btn-primary"} %>
+
+</div>
