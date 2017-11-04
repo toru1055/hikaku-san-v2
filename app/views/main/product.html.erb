@@ -1,12 +1,14 @@
 <div class="row">
   <div class="offset-lg-1 col-lg-10">
+
     <h3 class="mt-4"><%= @table.title %></h3>
     <p class="text-right">作成日: <%= @table.created_at.strftime('%Y年%m月%d日') %></p>
     <hr>
     <%= image_tag @table.hero_image, class: "img-fluid rounded mx-auto d-block" %>
-    <hr>
     <p><%= @table.description %></p>
     <hr>
+
+    <h3 class="mt-5">製品一覧</h3>
     <% @table.items.where("active = ?", true).each do |item| %>
       <h4 class="mt-4"><%= item.name %></h4>
       <div class="card p-4">
@@ -33,10 +35,9 @@
           </div>
         </div>
       </div>
-      <hr>
     <% end %>
 
-    <h3>比較表</h3>
+    <h3 class="mt-5">比較表</h3>
     <table class="table table-bordered text-center table-main">
       <thead>
         <tr>
