@@ -6,6 +6,7 @@
 #
 default: &default
   adapter: sqlite3
+  encoding: unicode
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   timeout: 5000
 
@@ -22,4 +23,9 @@ test:
 
 production:
   <<: *default
-  database: db/production.sqlite3
+  adapter: postgresql
+  host: <%= ENV['HIKAKUSAN_DATABASE_HOST'] %>
+  port: <%= ENV['HIKAKUSAN_DATABASE_PORT'] %>
+  database: <%= ENV['HIKAKUSAN_DATABASE_DATABASE'] %>
+  username: <%= ENV['HIKAKUSAN_DATABASE_USERNAME'] %>
+  password: <%= ENV['HIKAKUSAN_DATABASE_PASSWORD'] %>
