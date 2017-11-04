@@ -61,7 +61,7 @@
     <% @r_items.each do |item| %>
       <tr>
         <td><%= image_tag item.medium_image_url.gsub(/http:/, 'https:'), width: "100px" %></td>
-        <td><%= link_to item.name, item.url_pc, target: "_blank" %></td>
+        <td><%= link_to item.name, item.affiliate_url != nil ? item.affiliate_url : item.url_pc, target: "_blank" %></td>
         <td><%= item.used_exclude_sales_min_price.to_s(:delimited) %></td>
         <td><%= item.genre_id %></td>
         <td><%= item.genre_name %></td>
