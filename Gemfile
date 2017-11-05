@@ -62,4 +62,6 @@ gem 'rakuten_web_service'
 gem 'dotenv-rails'
 gem 'kaminari'
 
+gem 'google-analytics-rails'
+
 ruby "2.4.2"

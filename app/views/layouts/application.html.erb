@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
+    <%= analytics_init if Rails.env.production? %>
     <title><%= @html_title %><%= site_name %></title>
     <%= favicon_link_tag() %>
     <%= csrf_meta_tags %>
