@@ -42,6 +42,13 @@ body {
   table-layout: fixed;
 }
 
+@media screen and (max-width: 992px) {
+  .table-main {
+    table-layout: fixed;
+    font-size: 0.5rem;
+  }
+}
+
 .table thead th {
   vertical-align: middle;
 }
