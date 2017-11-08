@@ -43,6 +43,13 @@ body {
   overflow:hidden
 }
 
+@media screen and (min-width: 992px) {
+  .portfolio-item-img {
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+  }
+}
+
 @media screen and (max-width: 992px) {
   .table-main {
     table-layout: fixed;

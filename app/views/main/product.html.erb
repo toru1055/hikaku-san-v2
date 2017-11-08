@@ -5,8 +5,18 @@
     <p class="text-right">作成日: <%= @table.created_at.strftime('%Y年%m月%d日') %></p>
     <hr>
     <%= image_tag @table.hero_image, class: "img-fluid rounded mx-auto d-block" %>
-    <p><%= @table.description %></p>
-    <hr>
+    <p class="mt-3"><%= @table.description %></p>
+    <hr class="mt-5">
+
+    <% if @table.columns.where("length(description) > 0").count > 0 %>
+      <h3 class="mt-5">比較する仕様の説明</h3>
+      <% @table.columns.where("length(description) > 0").each do |column| %>
+        <h4 class="mt-4"><li><%= column.name %></li></h4>
+        <p class="mt-4"><%= column.description %></p>
+      <% end %>
+      <hr class="mt-5">
+    <% end %>
+
 
     <h3 class="mt-5">製品一覧</h3>
     <% @table.items.where("active = ?", true).each do |item| %>
@@ -14,7 +24,7 @@
       <div class="card p-4">
         <div class="row">
           <div class="col-lg-5 text-center pb-4">
-            <%= image_tag item.main_image, class: "card-img-top portfolio-item-img my-5" %>
+            <%= image_tag item.main_image, class: "card-img-top portfolio-item-img" %>
           </div>
           <div class="col-lg-7">
             <h5 class="card-title"><%= item.title %></h5>
