@@ -11,8 +11,22 @@
     <% if @table.columns.where("length(description) > 0").count > 0 %>
       <h3 class="mt-5">比較する仕様の説明</h3>
       <% @table.columns.where("length(description) > 0").each do |column| %>
-        <h4 class="mt-4"><li><%= column.name %></li></h4>
-        <p class="mt-4"><%= column.description %></p>
+        <h4 class="my-4"><li><%= column.name %></li></h4>
+        <div class="row">
+          <% if column.reference_url != nil && column.reference_url.length > 0 %>
+            <div class="col-lg-6 mb-4">
+              <%= image_tag column.image_src, class: "img-fluid rounded mx-auto d-block" %>
+              <cite>出展: <%= link_to column.reference_host, column.reference_url %></cite>
+            </div>
+            <div class="col-lg-6">
+              <p><%= column.description %></p>
+            </div>
+          <% else %>
+            <div class="col-lg-12">
+              <p><%= column.description %></p>
+            </div>
+          <% end %>
+        </div>
       <% end %>
       <hr class="mt-5">
     <% end %>
