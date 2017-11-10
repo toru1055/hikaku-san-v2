@@ -8,6 +8,8 @@
     <p class="mt-3"><%= @table.description %></p>
     <hr class="mt-5">
 
+    <%= render 'social_share' %>
+
     <% if @table.columns.where("length(description) > 0").count > 0 %>
       <h3 class="mt-5">比較する仕様の説明</h3>
       <% @table.columns.where("length(description) > 0").each do |column| %>
@@ -62,7 +64,7 @@
     <% end %>
 
     <h3 class="mt-5">比較表</h3>
-    <table class="table table-bordered text-center table-main">
+    <table class="table table-bordered text-center table-main mb-5">
       <thead>
         <tr>
           <th>製品名</th>
@@ -110,6 +112,8 @@
         </tr>
       </tbody>
     </table>
+
+    <%= render 'social_share' %>
 
   </div>
 </div>
