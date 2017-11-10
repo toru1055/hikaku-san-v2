@@ -16,7 +16,7 @@
           <% if column.reference_url != nil && column.reference_url.length > 0 %>
             <div class="col-lg-6 mb-4">
               <%= image_tag column.image_src, class: "img-fluid rounded mx-auto d-block" %>
-              <cite>出展: <%= link_to column.reference_host, column.reference_url %></cite>
+              <cite>出展: <%= link_to column.reference_host, column.reference_url, target: "_blank" %></cite>
             </div>
             <div class="col-lg-6">
               <p><%= column.description %></p>
