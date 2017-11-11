@@ -38,7 +38,9 @@
 </p>
 
 <%= link_to 'Edit', edit_table_path(@table), {class: "btn btn-primary"} %> |
-<%= link_to 'Back', tables_path, {class: "btn btn-primary"} %>
+<%= link_to 'Back', tables_path, {class: "btn btn-primary"} %> |
+<%= link_to 'Preview', {controller: :main, action: :product, table_id: @table.id, preview: 'on'}, {class: "btn btn-warning", target: '_blrank'} %> 
+
 
 <hr class="mt-5">
 
