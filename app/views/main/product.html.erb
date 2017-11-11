@@ -17,7 +17,7 @@
 
     <% if @table.columns.where("length(description) > 0").count > 0 %>
       <h3 class="mt-5">比較する仕様の説明</h3>
-      <% @table.columns.where("length(description) > 0").each do |column| %>
+      <% @table.columns.where("length(description) > 0").order(:priority).each do |column| %>
         <h4 class="my-4"><li><%= column.name %></li></h4>
         <div class="row">
           <% if column.reference_url != nil && column.reference_url.length > 0 %>
