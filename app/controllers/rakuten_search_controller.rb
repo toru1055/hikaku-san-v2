@@ -39,7 +39,7 @@ class RakutenSearchController < ApplicationController
       name: p.name,
       description: p.caption,
       price: p.used_exclude_sales_min_price,
-      main_image: p.medium_image_url.gsub(/\?_ex=128x128$/, '').gsub(/http:/, 'https:'),
+      main_image: p.medium_image_url.gsub(/\?_ex=128x128$/, '?_ex=256x256').gsub(/http:/, 'https:'),
       table_id: table.id,
       active: false,
       rakuten_url: p.affiliate_url != nil ? p.affiliate_url : p.url_pc
