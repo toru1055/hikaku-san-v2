@@ -64,4 +64,6 @@ gem 'kaminari'
 
 gem 'google-analytics-rails'
 
+gem 'browser'
+
 ruby "2.4.2"

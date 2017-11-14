@@ -40,7 +40,7 @@
 
 
     <h3 class="mt-5">製品一覧</h3>
-    <% @table.items.where("active = ?", true).each do |item| %>
+    <% @active_items.each do |item| %>
       <h4 class="mt-4"><%= item.name %></h4>
       <div class="card p-4">
         <div class="row">
@@ -68,55 +68,58 @@
       </div>
     <% end %>
 
-    <h3 class="mt-5">比較表</h3>
-    <table class="table table-bordered text-center table-main mb-5">
-      <thead>
-        <tr>
-          <th>製品名</th>
-          <% @table.items.where("active = ?", true).each do |item| %>
-            <td>
-              <strong><%= item.name %></strong></br>
-            </td>
-          <% end %>
-        </tr>
-        <tr>
-          <th>製品画像</th>
-          <% @table.items.where("active = ?", true).each do |item| %>
-            <td>
-              <%= image_tag item.main_image, {class: "rounded img-fluid"} %>
-            </td>
-          <% end %>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <th>値段</th>
-          <% @table.items.where("active = ?", true).each do |item| %>
-            <td> <%= item.formatted_price %> 円 </td>
-          <% end %>
-        </tr>
-        <% @table.columns.order(:priority).each do |column| %>
+    <% for p in 1..@active_items.page(1).per(@per_page).total_pages do %>
+      <% page_items = @active_items.page(p).per(@per_page) %>
+      <h3 class="mt-5">比較表 (<%= p %>)</h3>
+      <table class="table table-bordered text-center table-main mb-5">
+        <thead>
           <tr>
-            <th><%= column.name %></th>
-            <% @table.items.where("active = ?", true).each do |item| %>
+            <th>製品名</th>
+            <% page_items.each do |item| %>
               <td>
-              <% if item.element_value(column) != nil && item.element_value(column).length > 0 %>
-                <%= item.element_value(column) %><%= column.unit %>
-              <% else %>
-                  ---
-              <% end %>
+                <strong><%= item.name %></strong></br>
               </td>
             <% end %>
           </tr>
-        <% end %>
-        <tr>
-          <th>リンク</th>
-          <% @table.items.where("active = ?", true).each do |item| %>
-            <td><%= link_to "楽天", item.rakuten_url, {:target => "_blank", class: "btn btn-primary btn-sm"} %></td>
+          <tr>
+            <th>製品画像</th>
+            <% page_items.each do |item| %>
+              <td>
+                <%= image_tag item.main_image, {class: "rounded img-fluid"} %>
+              </td>
+            <% end %>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th>値段</th>
+            <% page_items.each do |item| %>
+              <td> <%= item.formatted_price %> 円 </td>
+            <% end %>
+          </tr>
+          <% @table.columns.order(:priority).each do |column| %>
+            <tr>
+              <th><%= column.name %></th>
+              <% page_items.each do |item| %>
+                <td>
+                  <% if item.element_value(column) != nil && item.element_value(column).length > 0 %>
+                    <%= item.element_value(column) %><%= column.unit %>
+                  <% else %>
+                    ---
+                  <% end %>
+                </td>
+              <% end %>
+            </tr>
           <% end %>
-        </tr>
-      </tbody>
-    </table>
+          <tr>
+            <th>リンク</th>
+            <% page_items.each do |item| %>
+              <td><%= link_to "楽天", item.rakuten_url, {:target => "_blank", class: "btn btn-primary btn-sm"} %></td>
+            <% end %>
+          </tr>
+        </tbody>
+      </table>
+    <% end %>
 
     <%= render 'social_share' %>
 
