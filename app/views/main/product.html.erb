@@ -52,13 +52,18 @@
             <strong><%= item.formatted_price %>円</strong>
             <p class="card-text mt-2"><%= item.description %></p>
             <ul class="list-group list-group-flush">
-              <% @table.columns.order(:priority).limit(3).each do |column| %>
+              <% column_count = 0 %>
+              <% @table.columns.order(:priority).each do |column| %>
                 <% if item.element_value(column) != nil && item.element_value(column).length > 0 %>
+                  <% column_count += 1 %>
                   <li class="list-group-item">
                     <%= column.name %>: 
                     <%= item.element_value(column) %>
                     <%= column.unit %>
                   </li>
+                <% end %>
+                <% if column_count >= 3 %>
+                  <% break %>
                 <% end %>
               <% end %>
             </ul>
