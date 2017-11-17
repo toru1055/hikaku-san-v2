@@ -3,6 +3,8 @@ require "browser"
 class MainController < ApplicationController
   def index
     @tables = Table.where(active: true)
+    @html_meta_desription = "「比較さん」は、あらゆる製品を比較する、比較情報マガジンです。"
+    @html_title_footer = " | あらゆる製品を比較する、比較情報マガジン"
   end
 
   def product

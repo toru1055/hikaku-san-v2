@@ -2,7 +2,7 @@
 <html>
   <head>
     <%= analytics_init if Rails.env.production? %>
-    <title><%= @html_title %><%= site_name %></title>
+    <title><%= @html_title %><%= site_name %><%= @html_title_footer %></title>
     <%= favicon_link_tag() %>
     <%= csrf_meta_tags %>
 
