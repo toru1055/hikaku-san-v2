@@ -10,6 +10,13 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
     <meta name="description" content="<%= @html_meta_desription %>" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@hikaku_san">
+    <meta name="twitter:creator" content="@hikaku_san">
+    <meta name="twitter:title" content="<%= @html_title %><%= site_name %>">
+    <meta name="twitter:description" content="<%= @html_meta_desription %>">
+    <meta name="twitter:image:src" content="<%= @html_meta_image_src %>">
   </head>
 
   <body>

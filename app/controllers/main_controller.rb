@@ -17,6 +17,7 @@ class MainController < ApplicationController
     if @table.active? || @is_preview
       @html_title = @table.title + " | "
       @html_meta_desription = @table.description
+      @html_meta_image_src = @table.hero_image
     else
       render :template => 'main/error'
     end
