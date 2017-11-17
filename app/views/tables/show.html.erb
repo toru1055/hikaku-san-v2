@@ -96,7 +96,7 @@
   </thead>
 
   <tbody>
-    <% @table.items.each do |item| %>
+    <% @table.items.order(:id).each do |item| %>
       <tr>
         <td><%= image_tag item.main_image, {class: "rounded img-fluid", width: "100px"} %></td>
         <td><%= link_to item.name, item.rakuten_url, {:target => "_blank"} %></td>
